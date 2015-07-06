@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body ng-app='angularApp'>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+      
+      <div class="container">
+          <div ng-view></div>
+      </div>
+    <a href="/agregar"> Aregar producto</a>
+    <a href="/todos"> Lista de productos</a>
+    <a href="/buscar">Buscar</a> 
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+      <script src="/js/main.js"></script>
+    </body>
+</html>
