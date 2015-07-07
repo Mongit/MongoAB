@@ -1,0 +1,13 @@
+<h2>All workers</h2>
+
+<div ng-controller="IndexController as ctrl">
+    <ul ng-repeat="worker in ctrl.workers">
+       
+        <li>
+            {{ worker.name }} - {{ worker.phone }}
+            
+        </li>
+        
+    </ul>
+</div>
+<a href="#/nuevo">Nuevo</a>
