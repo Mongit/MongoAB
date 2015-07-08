@@ -1,0 +1,6 @@
+<h1>Todos los Productos</h1>
+<div ng-controller="TodosController as ctrl">
+    <li ng-repeat="producto in ctrl.productos">
+        {{producto.name}} - {{producto.price}}
+    </li>
+</div>
