@@ -1,6 +1,16 @@
 <h1>Todos los Productos</h1>
+
 <div ng-controller="TodosController as ctrl">
-    <li ng-repeat="producto in ctrl.productos">
-        {{producto.name}} - {{producto.price}}
-    </li>
+    <ul ng-repeat="producto in ctrl.productos">
+        
+        <li >
+            {{producto.name | uppercase}} - {{producto.price | currency}}
+            <a ng-href="#/editar/{{producto._id}}">Editar</a>
+            <a ng-href="#/ver/{{producto._id}}">Ver</a>
+            <a ng-href="#" ng-click="ctrl.delete(producto._id);">Eliminar</a>
+        </li>
+        
+    </ul>    
 </div>
+
+<a ng-href="#/nuevo">Nuevo</a>
