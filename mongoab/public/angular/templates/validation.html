@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Formulario de AngularJS!</h2>
+    
+    <div data-ng-controller="FormCtrl">
+        <form name="exampleForm"><!-- Nombre del formulario-->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" placeholder="name" name="name" data-ng-model="formData.name" required data-ng-class='{ error: exampleForm.name.$invalid && !exampleForm.$pristine }'/><!-- Nombre del componente name="name"-->  
+             <!--   <span data-ng-show="!exampleForm.$pristine && exampleForm.name.$error.required">Name is required.</span>  <!--La directiva ng-show recibe una expresión que será evaluada. Si la expresión da True, el componente aparece en la vista y muestra el mensaje.--> <!--(Utiliza nombre de formulario y del componente a evaluar, y la propiedad $error que accede a los distintos ipos de errores que puede tener el componente name. Required es el tipo de error por si el usuario no ingresa nada en este campo de texto)--> <!--Se utiliza $pristine para determinar si ya se ha ingresado información al formulario, el mensaje solamente se mostrara si ya se utilizo el campo-->
+            </div>
+            
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" placeholder="last name" name='lastname' data-ng-model='formData.lastname' required data-ng-class='{ error: exampleForm.name.$invalid && !exampleForm.$pristine }' />
+                <!--
+                <span data-ng-show="!exampleForm.$pristine && exampleForm.lastname.$error.required">Last name is required.</span>
+            </div>
+            <!-- Las directiva ng-model especifica el objeto dentro del $scope a utilizar como modelo del formulario -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="example@email.com" name='email' data-ng-model='formData.email' required data-ng-class='{ error: exampleForm.email.$error.required && !exampleForm.$pristine, warning: exampleForm.email.$error.email }' />
+                <!-- ng-class se puede aplicar un estilo de acuerdo a una expresión la cual incluso puede ser un objeto. se marcara rojo sino ingresa nada, amarillo si hay algo incorrecto en la estructura -->
+               <!--
+                <span data-ng-show="!exampleForm.$pristine && exampleForm.email.$error.required">Email is required</span><!-- email requerido-->
+        <!--  
+<span data-ng-show="!exampleForm.$pristine && exampleForm.email.$error.email">Please enter a valid email</span><!--$error posee una propiedad llamada email que retorna true si existe algun error relacionado con un campo del email-->
+            </div>
+            <!-- - Angular utiliza este modelo y el tipo del input (text, email) para determinar cuáles entradas son válidas de acuerdo a cada componente -->
+            <input type="submit" class='btn btn-success pull-right' data-ng-click="submitForm(formData)" data-ng-disabled="!exampleForm.$valid" />
+            <!-- ng-click  llama a una función dentro del $scope. -->
+            <!-- ng-disabled recibe una expresión. Si la expresión da como resultado True, el componente se deshabilita-->
+        </form>        
+        <br />
+            Form content: {{formData}}
+    </div>
+</div>

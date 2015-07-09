@@ -125,3 +125,17 @@
         
     }]);        
 })();
+
+
+
+(function() {
+    var app = angular.module('app');
+    
+    app.controller('FormCtrl', function( $scope) {
+        $scope.formData = {};
+        
+        $scope.submitForm = function (fornData) {
+            alert('Form submitted with' + JSON.stringify(formData));
+        };
+    });
+})();
