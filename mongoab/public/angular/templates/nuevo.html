@@ -1,7 +1,72 @@
-<h1>Nuevo View</h1>
+<div class="container">
+    <h1>Nuevo View</h1>
+    
+    <div ng-controller="NuevoController as ctrl">
+        <form ng-submit="ctrl.save()"
+              name='nuevoForm'
+              novalidate>
+            <div class="form-group">
+                Nombre: 
+                <input type="text" 
+                       class='form-control'
+                       placeholder='name'
+                       name='name'
+                       ng-model="ctrl.name" 
+                       ng-pattern="/[a-zA-Z]/"
+                       required
+                       ng-class='{error: nuevoForm.name.$invalid && !nuevoForm.$pristine}'
+                />
+            </div>
+            
+            <div class="form-group">
+                Precio: 
+                <input type="text"
+                       class='form-control'
+                       placeholder='price'
+                       name='price'
+                       ng-model="ctrl.price"
+                       ng-pattern="/\d{1,2}/"
+                       minlength=1 maxlength=2
+                       required
+                       ng-class='{error: nuevoForm.price.$invalid && !nuevoForm.$pristine}'
+                />
 
-<form ng-submit="ctrl.save()" ng-controller="NuevoController as ctrl">
-    Nombre: <input type="text" ng-model="ctrl.name" />
-    Precio: <input type="text" ng-model="ctrl.price" />
+            </div>    
+            
+            <div>nuevoForm is {{nuevoForm.$valid}}</div>
+            
+            <input type="submit" 
+                   class='btn btn-success pull-right'
+                   id="submit" 
+                   value="guardar" 
+                   ng-disabled='!nuevoForm.$valid' 
+            />
+            
+        </form>
+        <br />
+    </div>
+</div>
+
+
+<!-- <h1>Nuevo View</h1>
+
+<form name="form" class="css-form" novalidate ng-submit="ctrl.save()" ng-controller="NuevoController as ctrl">
+    <div>
+        Size (integer 0 - 10);
+        Precio: <input type="text" ng-model="ctrl.price" min='0' max='10' integer/> {{ctrl.price}}<br />
+        <span ng-show='form.size.$error.integer'>The value is not a valir integer!</span>
+        <span ng-show='form.size.$error.min || form.size.$error.max'>The value be in range 0 to 10!</span>
+    </div>
+    
+    <div>
+        Nombre: <input type="text" ng-model="ctrl.name" name="name" username /> {{name}}
+        <br/>
+        <span ng-show="form.name.$pending.username">Checking if this name is available...</span>
+        
+        <span ng-show="form.name.$error.username">This isername is already taken!</span>
+    </div>
+    
+    
     <input type="submit" id="submit" value="guardar" />
-</form>
+</form> 
+-->

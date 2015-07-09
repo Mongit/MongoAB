@@ -55,6 +55,14 @@
                 console.log(status);            
             });
         }
+    /*
+        model.formData = {};
+        
+        model.submitForm = function (fornData) {
+            alert('Form submitted with' + JSON.stringify(formData));
+        };
+        */
+
     }]);
 })();
 
