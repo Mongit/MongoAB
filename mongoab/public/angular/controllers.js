@@ -52,17 +52,9 @@
             }).success(function (data, status, headers, config) {
                 $location.path('/');
             }).error(function (data, status, headers, config) {
-                console.log(status);            
+                console.log('%s %s %s', config.method, config.url, status);            
             });
         }
-    /*
-        model.formData = {};
-        
-        model.submitForm = function (fornData) {
-            alert('Form submitted with' + JSON.stringify(formData));
-        };
-        */
-
     }]);
 })();
 
