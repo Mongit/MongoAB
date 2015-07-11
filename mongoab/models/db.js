@@ -1,26 +1,26 @@
-// Bring Mongoose into the app
 var mongoose = require('mongoose');
+var configFactory = require('./config');
 
-// Build the connection string
-var dbURI = 'mongodb://localhost/test';
+var ConectarABDD = function() {
+   // this.dbURI = dbURI;
+};
 
-// Create the database connection
-mongoose.connect(dbURI);
+ConectarABDD.prototype.conectar = function(dbURI) {
+    var config = configFactory(dbURI.name, dbURI.host, dbURI.port);
+    var uri = config.getConfig();
+    
+    mongoose.connect(uri);
+    mongoose.connection.once('open', function () {
+        console.log('conexion exitonsa'); 
+    });
+    mongoose.connection.on('error', function (err) {
+        console.log('Mongoose default connection error: ' + err);
+    });
 
-// CONNECTIONS EVENTS
-// When successfully connected
-mongoose.connection.once('open', function () {
-    console.log('conexion exitonsa'); 
-});
+};
 
-// If the connection throws an error
-mongoose.connection.on('error', function (err) {
-    console.log('Mongoose default connection error: ' + err);
-});
-
-// BRING IN YOUR SCHEMAS & MODELS 
-var productos = require('./../models/productos');
-
-
+module.exports = function() {
+    return new ConectarABDD();
+};
 
 
