@@ -7,21 +7,13 @@ var bodyParser = require('body-parser');
 
 var db = require('./models/db');
 var basedd = db();
-//var dbURI = 'mongodb://localhost/test';
-
-
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 
-
-
-
 var app = express();
 
-//var port = app.get('port');
-//console.log(port);
 var dbURI = {
     name: 'test', 
     host: 'localhost',

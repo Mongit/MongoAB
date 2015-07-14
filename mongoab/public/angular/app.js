@@ -7,6 +7,7 @@
         .when("/editar/:id", { templateUrl: "angular/templates/editar.html" })
         .when("/ver/:id", { templateUrl: "angular/templates/ver.html" })
         .when("/validation", { templateUrl: "angular/templates/validation.html" })
+        .when("/calculator", { templateUrl: "angular/templates/calculator.html" })
         .otherwise({ redirectTo: "/" });
     
     }]);

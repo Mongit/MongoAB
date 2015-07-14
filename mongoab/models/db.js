@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var configFactory = require('./config');
 
 var ConectarABDD = function() {
-   // this.dbURI = dbURI;
+    
 };
 
 ConectarABDD.prototype.conectar = function(dbURI) {
