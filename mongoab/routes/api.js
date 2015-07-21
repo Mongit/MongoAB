@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
     
     producto.save(function (err, data) {
         if(err)  return next(err);
-        res.json({ success: true });
+        res.json(data);
     });
     
 });
@@ -46,7 +46,7 @@ router.put('/', function(req, res, next) {
         
         producto.save(function (err, data) {
             if(err) return next(err);
-            res.json({ success: true });
+            res.json(data);
         });
     });
 });
