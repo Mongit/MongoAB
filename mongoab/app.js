@@ -4,9 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 var db = require('./models/db');
 var basedd = db();
+var dbURI = {
+    name: 'test', 
+    host: 'localhost',
+    port: '3000'
+};
+basedd.conectar(dbURI);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -14,12 +22,6 @@ var api = require('./routes/api');
 
 var app = express();
 
-var dbURI = {
-    name: 'test', 
-    host: 'localhost',
-    port: '3000'
-};
-basedd.conectar(dbURI);
 
 
 // view engine setup
@@ -32,11 +34,31 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//redis session
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    store: new RedisStore({
+        host: 'localhost',
+        port: 6379
+    }),
+    secret: '0FFD9D8D-78F1-4A30-9A4E-0940ADE81645',
+    cookie: {path: '/', maxAge: 3600000}
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+var authorization = function(req, res, next) {
+    if (req.session && req.session.authenticated)
+        return next();
+    else
+        return res.redirect('/users/login')
+};
+
 app.use('/users', users);
-app.use('/api', api);
+app.use('/', authorization, routes);
+app.use('/api', authorization, api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
