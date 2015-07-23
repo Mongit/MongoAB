@@ -5,7 +5,7 @@ var productoSchema = mongoose.Schema({
     price: Number
 });
 
-var Producto = mongoose.model('Producto', productoSchema);
+var Producto = mongoose.model('Producto', productoSchema, 'test');
 
 module.exports = function(config) {
     return new Producto(config);

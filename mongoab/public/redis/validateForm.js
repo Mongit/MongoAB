@@ -1,35 +1,39 @@
-var validateForm = (function() {
-    var ValidateForm = function(config) {
-
-        config.err = [];
+var ValidateForm = (function() {
+    var ValidateForm = function (data) {
+        this.config = data;
+        this.config.err = [];
+    };
+    
+    ValidateForm.prototype.validate = function() {
         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
         
-
-        if(config.username !== "") { 
-            console.log("\nusername: " + config.username); 
+        if(this.config.username !== "") { 
+            console.log("\nusername: " + this.config.username); 
         } else { 
-            config.err.push("Please enter username"); 
+            this.config.err.push("Please enter username"); 
         }
 
-        if(re.test(config.email)) { 
-            console.log("\nemail: " + config.email); 
+        if(re.test(this.config.email)) { 
+            console.log("\nemail: " + this.config.email); 
         } else { 
-            config.err.push("Please enter a valid email"); 
+            this.config.err.push("Please enter a valid email"); 
         }
 
-        if(config.pwd === config.pwd2) { 
-            console.log("\npwd: " + config.pwd); 
+        if(this.config.password === this.config.confirmPassword) { 
+            console.log("\npwd: " + this.config.password); 
+            console.log("\npwd: " + this.config.confirmPassword); 
         } else { 
-            config.err.push("Your password or confirm password is incorrect"); 
+            this.config.err.push("Your password or confirm password is incorrect"); 
         }
+        
+        return this.config;
 
-        return config;
-    }
+    };
     
     return ValidateForm;
 })();
 
-
-module.exports = function(config) {
-    return new ValidateForm(config);
+module.exports = function(data) {
+    return new ValidateForm(data);
 };
