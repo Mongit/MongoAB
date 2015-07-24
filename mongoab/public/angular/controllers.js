@@ -4,7 +4,7 @@
     app.controller('TodosController', ['$http', "$location", 'productosApi', function($http, $location, productosApi) {//empieza $scope del constructor (funcion anonima del array)
         
         var ctrl = this;//lo iguala al scope para poder hacer uso del objeto dentro de otras funciones
-        ctrl.producto = [];
+        ctrl.productos = [];
         
         productosApi.getAll(function(productos){
             ctrl.productos = productos;
