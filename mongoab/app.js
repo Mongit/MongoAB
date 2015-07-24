@@ -44,7 +44,7 @@ app.use(session({
         port: 6379
     }),
     secret: '0FFD9D8D-78F1-4A30-9A4E-0940ADE81645',
-    cookie: {path: '/', maxAge: 3600000}
+    cookie: {path: '/', maxAge: 60000}
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));

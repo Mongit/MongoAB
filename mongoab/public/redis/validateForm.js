@@ -1,4 +1,5 @@
 var ValidateForm = (function() {
+    
     var ValidateForm = function (data) {
         this.config = data;
         this.config.err = [];
@@ -8,22 +9,15 @@ var ValidateForm = (function() {
         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
         
-        if(this.config.username !== "") { 
-            console.log("\nusername: " + this.config.username); 
-        } else { 
+        if(this.config.username === "") { 
             this.config.err.push("Please enter username"); 
         }
 
-        if(re.test(this.config.email)) { 
-            console.log("\nemail: " + this.config.email); 
-        } else { 
+        if(!re.test(this.config.email)) {
             this.config.err.push("Please enter a valid email"); 
         }
 
-        if(this.config.password === this.config.confirmPassword) { 
-            console.log("\npwd: " + this.config.password); 
-            console.log("\npwd: " + this.config.confirmPassword); 
-        } else { 
+        if(this.config.password !== this.config.confirmPassword) { 
             this.config.err.push("Your password or confirm password is incorrect"); 
         }
         

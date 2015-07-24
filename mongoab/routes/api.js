@@ -54,10 +54,9 @@ router.put('/', function(req, res, next) {
 router.delete('/:id', function(req, res, next) {
     var Producto = mongoose.model('Producto');
     
-    Producto.remove({_id: req.params.id}, function(err) {
+    Producto.findByIdAndRemove(req.params.id, function(err, producto) {
         if(err) return next(err);
-        
-        res.json({ success: true });
+        res.json(producto);
     });
 });
 
