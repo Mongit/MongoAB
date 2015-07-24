@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var usuarios = require('./../../models/usuarios');
 var User = mongoose.model('Usuario');
+var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
 var Usuario = function() {
     
@@ -13,6 +14,8 @@ Usuario.prototype.getAll = function(callback) {
 Usuario.prototype.getOneByEmail = function(email, callback) {
     if(!email)
         return callback(new Error('Email cannot be empty'), null);
+    if(!re.test(email)) 
+        return callback(new Error('Please enter a valid email'));
     
     User.findOne({ email: email }, callback);
 };

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var usuarios = require('./../public/redis/usuarioApi')();
-var validateForm = require('./../public/redis/validateForm')();
     
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
@@ -23,21 +22,15 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-    var err = validateForm.validate(req.body);
-    
-    if(err.err.length === 0) {
-        usuarios.save(req.body, function(err, data) {
-            if(err) {
-                return res.render('signup', { error: err.message });
-            }
-            else {
-                res.redirect('/users/login');    
-            }
-        });
-    }
-    else {
-        res.render('signup', { error: err.err});
-    }
+   usuarios.save(req.body, function(err, data) {
+        if(err) {
+            return res.render('signup', { error: err.message });
+        }
+        else {
+            res.redirect('/users/login');    
+        }
+    });
+   
 });
 
 
