@@ -1,33 +1,33 @@
 var ValidateForm = (function() {
     
-    var ValidateForm = function (data) {
-        this.config = data;
-        this.config.err = [];
+    var ValidateForm = function () {
+        
     };
     
-    ValidateForm.prototype.validate = function() {
+    ValidateForm.prototype.validate = function(data) {
+        data.err = [];
         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
         
-        if(this.config.username === "") { 
-            this.config.err.push("Please enter username"); 
+        if(data.username === "") { 
+            data.err.push("Please enter username"); 
         }
 
-        if(!re.test(this.config.email)) {
-            this.config.err.push("Please enter a valid email"); 
+        if(!re.test(data.email)) {
+            data.err.push("Please enter a valid email"); 
         }
 
-        if(this.config.password !== this.config.confirmPassword) { 
-            this.config.err.push("Your password or confirm password is incorrect"); 
+        if(data.password !== data.confirmPassword) { 
+            data.err.push("Your password or confirm password is incorrect"); 
         }
         
-        return this.config;
+        return data;
 
     };
     
     return ValidateForm;
 })();
 
-module.exports = function(data) {
-    return new ValidateForm(data);
+module.exports = function() {
+    return new ValidateForm();
 };

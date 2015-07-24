@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
 var usuarios = require('./../../models/usuarios');
-//var validateForm = require('./validateForm');
 var User = mongoose.model('Usuario');
 
-var Usuario() {
+var Usuario = function() {
     
 }
 
@@ -43,7 +42,7 @@ Usuario.prototype.save = function(user, callback) {
             return callback(new Error('Email already exists'));
         
         var u = usuarios({
-            username: user.name,
+            username: user.username,
             email: user.email,
             password: user.password
         });
