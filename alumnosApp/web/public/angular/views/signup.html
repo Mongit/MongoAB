@@ -1,0 +1,11 @@
+<form name="frmSignup"  ng-submit="frmSignup.$valid && ctrl.signup()" 
+      ng-controller="SignupController as ctrl"
+      novalidate >
+    
+    Email:<input type="email" ng-model="ctrl.email" 
+                  required/>
+    
+    Password:<input type="password" ng-model="ctrl.password" 
+                        required />
+    <input type="submit" value="Signup" />
+</form>

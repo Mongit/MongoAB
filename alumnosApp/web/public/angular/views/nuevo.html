@@ -1,0 +1,12 @@
+<form name="frmNuevo" ng-submit="frmNuevo.$valid && ctrl.guardar()" 
+                      ng-controller="NuevoController as ctrl"
+                      novalidate  >
+    Nombre:<input type="text" ng-model="ctrl.nombre" required 
+                              ng-pattern="/^[a-zA-Z ]{0,}$/" />
+    
+    Calificacion:<input type="number" 
+                        ng-model="ctrl.calificacion"
+                        min="1" max="10" 
+                        required />
+    <input type="submit" value="guardar" />
+</form>
