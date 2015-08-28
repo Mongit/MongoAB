@@ -4,13 +4,11 @@
     app.factory("accountProxy", ["proxyFactory", function(proxyFactory) {
         var AccountProxy = function() {
             this.loginProxy = proxyFactory('/account/api/login');
-            //this.logoutProxy = proxyFactory('/account/api/logout');
+            this.logoutProxy = proxyFactory('/account/api/logout');
             this.signupProxy = proxyFactory('/account/api/signup');
         };
         
         AccountProxy.prototype.login = function(model, success){
-            console.log("ACCOUNT PROXY model:");
-            console.dir(model);
             this.loginProxy.save(model, success);
         };
         

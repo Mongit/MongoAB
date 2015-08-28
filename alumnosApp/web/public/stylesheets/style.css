@@ -1,17 +1,18 @@
+#angularViews {
+  padding-top: 50px;
+}
+
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-  color: #00B7FF;
-}
-
-.ng-invalid.ng-dirty {
-    border-color: #FA787E;
-}
-
-.ng-valid.ng-dirty {
-    border-color: #78FA89;
-}
-

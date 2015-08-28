@@ -1,9 +1,10 @@
 (function() {
     var app = angular.module('app');
     
-    app.controller('TodosController', ['$http', '$location', 'alumnosProxy', function($http, $location, proxy) {
+    app.controller('TodosController', ['$http', '$location', 'alumnosProxy', 'tokenStorage', function($http, $location, proxy, tokenStorage) {
        
         var ctrl = this;
+        ctrl.saludo =  tokenStorage.getEmail();
         ctrl.alumnos = [];
 
         proxy.getAll(function(alumnos){

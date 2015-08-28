@@ -3,7 +3,7 @@
     
     app.factory("httpInterceptor", ['$q', '$location', 'tokenStorage', function($q, $location, tokenStorage) {
 
-        var freeAccesPages = ['/', '/login', '/signup'];
+        var freeAccesPages = ['/', '/login', '/signup', '/pruebas'];
         
         return {
             
@@ -14,10 +14,11 @@
                 if (freeAccesPages.indexOf($location.path()) === -1) {
                     var tokenObj = tokenStorage.getToken();
 
-                    if (tokenObj === undefined)
-                        $location.path('/login');
+                    if (tokenObj === undefined){   
+                        $location.path('/login');    
+                    }
                 }
-                
+                           
                 //set 'x-access-token' header
                 request.headers['x-access-token'] = tokenStorage.getAccessHeader();
                 
@@ -26,7 +27,7 @@
 
             // optional method
             'requestError': function(rejection) {
-                return $q.reject(rejection);
+                return $q.reject(rejection);//es una promesa, se ejecuta la función reject y se le manda un objeto rejection, esto equivale a ejecutar la función que es el segundo parametro del then  en la promesa.
             },
 
             // optional method

@@ -1,12 +1,27 @@
-<form name="frmLogin"  ng-submit="frmLogin.$valid && ctrl.login()" 
-      ng-controller="LoginController as ctrl"
-      novalidate >
-    
-    Email:<input type="email" ng-model="ctrl.email" 
-                  required/>
-    
-    Password:<input type="password" ng-model="ctrl.password" 
-                        required />
-    <input type="submit" value="Login" />
-    <a ng-href="#/signup">Signup</a>
-</form>
+<link rel='stylesheet' href='/stylesheets/styleLogin.css' />
+
+<div class="container">
+   <div class="jumbotron">
+       <form class="form-login" 
+          name="frmLogin"  ng-submit="frmLogin.$valid && ctrl.login()" 
+          ng-controller="LoginController as ctrl"
+          novalidate >
+           <h2 class="form-login-heading pull-left"> Please Login</h2>
+           <input id="email" class="form-control" placeholder="Email address"
+                 autofocus
+                 type="email" 
+                 ng-model="ctrl.email" 
+                 required/>
+           <input id="inputPassword" class="form-control"          
+                           placeholder="Password"
+                           type="password" 
+                           ng-model="ctrl.password" 
+                           required />
+           <p>
+               <input class="btn btn-xs btn-primary pull-right" type="submit" value="Login">
+               <a class="btn btn-xs btn-success pull-left" ng-href="#/signup" role="button">Sign up</a>
+           </p>
+       </form>
+       
+   </div>
+</div>
